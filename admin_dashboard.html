@@ -1,0 +1,153 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+<section class="min-vh-100 py-5 admin-dashboard-bg position-relative">
+  <div class="container">
+    <!-- HEADER -->
+    <div class="text-center mb-5 animate__animated animate__fadeInDown">
+      <h1 class="display-6 fw-bold text-dark">
+        <i class="bi bi-shield-lock-fill text-primary me-2"></i> Admin Dashboard
+      </h1>
+      <div class="underline-gradient mx-auto my-2"></div>
+      <p class="text-muted fs-5">Manage data, monitor activity, and stay in control</p>
+    </div>
+
+    <!-- STATS -->
+    <div class="row g-4 mb-5 animate__animated animate__fadeInUp animate__delay-1s">
+      {% set stats = [
+        {'title': 'Users', 'count': user_count, 'icon': 'bi-people-fill', 'class': 'glass-blue'},
+        {'title': 'Scans', 'count': scan_count, 'icon': 'bi-shield-check', 'class': 'glass-green'},
+        {'title': 'Messages', 'count': message_count, 'icon': 'bi-envelope-open-fill', 'class': 'glass-red'}
+      ] %}
+      {% for stat in stats %}
+      <div class="col-md-4">
+        <div class="card stat-card {{ stat.class }} text-white text-center shadow-sm h-100 border border-light border-opacity-10">
+          <div class="card-body py-4">
+            <div class="icon-circle mb-3 bg-white bg-opacity-25">
+              <i class="bi {{ stat.icon }} fs-2"></i>
+            </div>
+            <h6 class="text-uppercase small fw-bold mb-1">{{ stat.title }}</h6>
+            <h2 class="display-6 fw-bold">{{ stat.count }}</h2>
+            <p class="text-white-50 small">Total {{ stat.title | lower }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="mb-5">
+      <h4 class="fw-semibold mb-4 text-dark">
+        <i class="bi bi-lightning-fill text-warning me-2"></i>Quick Actions
+      </h4>
+      <div class="row g-3">
+        {% set actions = [
+          {'title': 'Manage Users', 'icon': 'bi-person-gear', 'url': url_for('main.manage_users'), 'color': 'text-primary'},
+          {'title': 'View Scans', 'icon': 'bi-activity', 'url': url_for('main.view_scans'), 'color': 'text-success'},
+          {'title': 'Inbox', 'icon': 'bi-chat-dots-fill', 'url': url_for('main.admin_inbox'), 'color': 'text-danger'}
+        ] %}
+        {% for act in actions %}
+        <div class="col-md-4">
+          <a href="{{ act.url }}" class="quick-action-tile d-block text-center shadow-sm p-4 rounded-4 text-decoration-none">
+            <i class="bi {{ act.icon }} fs-3 {{ act.color }} mb-2"></i><br>
+            <span class="fw-semibold text-dark">{{ act.title }}</span>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- PANELS -->
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card glass-panel shadow-sm h-100 border border-0 animate__animated animate__fadeInLeft">
+          <div class="card-body">
+            <h5 class="mb-3 fw-semibold">
+              <i class="bi bi-bar-chart-line-fill me-2 text-primary"></i>Scan Activity
+            </h5>
+            <p class="text-muted">Visualize scan volume trends and target analysis (chart integration coming soon).</p>
+            <div class="text-center py-3">
+              <i class="bi bi-graph-up-arrow fa-3x text-muted opacity-50"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card glass-panel shadow-sm h-100 border border-0 animate__animated animate__fadeInRight">
+          <div class="card-body">
+            <h5 class="mb-3 fw-semibold">
+              <i class="bi bi-clock-history me-2 text-secondary"></i>Recent Logs
+            </h5>
+            <ul class="list-group list-group-flush small">
+              <li class="list-group-item"><i class="bi bi-person-check me-1 text-success"></i> New user registered</li>
+              <li class="list-group-item"><i class="bi bi-shield-check me-1 text-primary"></i> Scan completed by <strong>user@example.com</strong></li>
+              <li class="list-group-item"><i class="bi bi-chat-left-dots me-1 text-warning"></i> Message received via contact form</li>
+              <li class="list-group-item"><i class="bi bi-sliders2-vertical me-1 text-dark"></i> User role updated</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STYLES -->
+<style>
+.admin-dashboard-bg {
+  background: #f8f9fb;
+}
+
+.underline-gradient {
+  height: 4px;
+  width: 60px;
+  background: linear-gradient(to right, #0d6efd, #6c63ff);
+  border-radius: 4px;
+}
+
+.stat-card {
+  border-radius: 20px;
+  transition: transform 0.2s ease;
+}
+.stat-card:hover {
+  transform: scale(1.015);
+}
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glass-blue {
+  background: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,94,184,0.9));
+}
+.glass-green {
+  background: linear-gradient(135deg, rgba(40,167,69,0.9), rgba(30,130,50,0.9));
+}
+.glass-red {
+  background: linear-gradient(135deg, rgba(220,53,69,0.9), rgba(160,40,50,0.9));
+}
+
+.quick-action-tile {
+  background: #fff;
+  border: 2px solid #e4e9f2;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+.quick-action-tile:hover {
+  background: #eef5ff;
+  border-color: #0d6efd;
+  transform: translateY(-3px);
+}
+
+.glass-panel {
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+}
+</style>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section section-lg bg-primary pt-7">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 text-center">
+                <h2 class="text-white">📝 Past Scan History</h2>
+                <p class="text-white-50">See the previous scans performed and download detailed reports.</p>
+            </div>
+        </div>
+
+        {% if scans %}
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="table-responsive shadow-soft rounded">
+                    <table class="table table-hover bg-white">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Website URL</th>
+                                <th scope="col">Vulnerability</th>
+                                <th scope="col">Risk Level</th>
+                                <th scope="col">Scanned On</th>
+                                <th scope="col">PDF Report</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for scan in scans %}
+                            <tr>
+                                <th scope="row">{{ loop.index }}</th>
+                                <td>{{ scan.url }}</td>
+                                <td>{{ scan.vulnerability }}</td>
+                                <td>
+                                    {% if scan.risk == 'High' %}
+                                        <span class="badge badge-danger">High</span>
+                                    {% elif scan.risk == 'Medium' %}
+                                        <span class="badge badge-warning text-dark">Medium</span>
+                                    {% else %}
+                                        <span class="badge badge-success">Low</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ scan.date_scanned.strftime('%Y-%m-%d %H:%M') }}</td>
+                                <td>
+                                    {% if current_user.is_authenticated %}
+                                        <a href="{{ url_for('main.download_scan', scan_id=scan.id) }}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-file-download"></i> Download
+                                        </a>
+                                    {% else %}
+                                        <small class="text-muted">Login to download</small>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <p class="text-white">No scans found yet. Try scanning a website!</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+

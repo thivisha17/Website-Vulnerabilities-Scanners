@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+    <!-- Hero -->
+    <div class="section section-header pb-7">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8 text-center">
+                    <h1 class="display-2 mb-4">Vulnerability Scanner</h1>
+                    <p class="lead mb-5">
+                        This is a powerful tool designed to detect and report security weaknesses in websites, helping to enhance online protection and safeguard sensitive data.
+                    </p>
+                    <a class="btn btn-primary" href="{{ url_for('main.public_contact') }}">
+                        <span class="fas fa-book-reader mr-2"></span>Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Hero section -->
+
+    <!-- Section -->
+    <section class="section section-lg pt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-primary shadow-soft border-light p-4">
+                        <div class="row">
+                            <div class="col-12 col-lg-4 px-md-0 mb-4 mb-lg-0">
+                                <div class="card-body text-center bg-primary py-5">
+                                    <div class="icon icon-shape shadow-inset border-light rounded-circle mb-3">
+                                        <span class="fas fa-puzzle-piece"></span>
+                                    </div>
+                                    <h2 class="h4 mr-2">Security Awareness</h2>
+                                    <p class="mb-0">
+                                        Understanding website security is crucial in today’s digital world. Our scanner helps users identify vulnerabilities, educating them on potential threats and best practices for a secure online presence.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 px-md-0 mb-4 mb-lg-0">
+                                <div class="card-body text-center bg-primary py-5">
+                                    <div class="icon icon-shape shadow-inset border-light rounded-circle mb-3">
+                                        <span class="fas fa-puzzle-piece"></span>
+                                    </div>
+                                    <h2 class="h4 mr-2">Threat Detection</h2>
+                                    <p class="mb-0">
+                                        We provide an advanced vulnerability scanning tool that detects security flaws in websites, allowing businesses and developers to take immediate action against cyber threats before they cause damage.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 px-md-0">
+                                <div class="card-body text-center bg-primary py-5">
+                                    <div class="icon icon-shape shadow-inset border-light rounded-circle mb-3">
+                                        <span class="fas fa-puzzle-piece"></span>
+                                    </div>
+                                    <h2 class="h4 mr-2">Protection & Prevention</h2>
+                                    <p class="mb-0">
+                                        Beyond just detecting vulnerabilities, we guide users with detailed reports and recommendations to fix security issues, ensuring long-term website protection and resilience against attacks.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section -->
+    <section class="section section-lg pt-0">
+        <div class="container">
+            <div class="row align-items-center justify-content-around">
+                <div class="col-md-6 col-xl-6 mb-5">
+                    <div class="card bg-primary shadow-soft border-light organic-radius p-3">
+                        <img class="organic-radius img-fluid" src="{{ url_for('static', filename='assets/img/about-us-1.jpg') }}" alt="modern desk">
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-5 text-center text-md-left">
+                    <h2 class="h1 mb-4">Scan with us, Secure everything.</h2>
+                    <p class="lead">
+                        At Website Vulnerability Scanner, we are committed to making the web a safer place. Our mission is to help businesses and developers detect security weaknesses in their websites before they can be exploited by malicious attackers.
+                    </p>
+                    <p class="lead">
+                        Our team is passionate about cybersecurity, continuously evolving to stay ahead of emerging threats. Whether you’re a developer, security enthusiast, or business owner, our scanner empowers you to safeguard your digital presence with confidence.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section -->
+    <section class="section section-lg pt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-4 col-lg-4 text-center">
+                    <div class="icon-box mb-4">
+                        <div class="icon icon-shape shadow-soft border border-light rounded-circle mb-4">
+                            <span class="far fa-smile-beam"></span>
+                        </div>
+                        <h3 class="h5">Positive Reviews</h3>
+                        <span class="counter display-3 text-gray d-block">576</span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 col-lg-4 text-center">
+                    <div class="icon-box mb-4">
+                        <div class="icon icon-shape shadow-soft border border-light rounded-circle mb-4">
+                            <span class="far fa-eye"></span>
+                        </div>
+                        <h3 class="h5">Clients</h3>
+                        <span class="counter display-3 text-gray d-block">580</span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 col-lg-4 text-center">
+                    <div class="icon-box mb-4">
+                        <div class="icon icon-shape shadow-soft border border-light rounded-circle mb-4">
+                            <span class="fas fa-globe-europe"></span>
+                        </div>
+                        <h3 class="h5">Countries</h3>
+                        <span class="counter display-3 text-gray d-block">84</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

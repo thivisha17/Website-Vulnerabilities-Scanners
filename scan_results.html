@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Scan Summary Section -->
+<section class="section bg-primary text-white text-center py-6">
+    <div class="container">
+        <h1 class="display-4 mb-4">🛡️ Scan Completed</h1>
+        <p class="lead mb-5">Here's your website's security summary!</p>
+
+        <!-- Overall Score -->
+        <div class="card shadow-soft bg-primary border-light mb-5">
+            <div class="card-body">
+                <h2 class="display-3 font-weight-bold">{{ score }}%</h2>
+                <p class="lead">Overall Security Score</p>
+            </div>
+        </div>
+
+        <!-- Vulnerability Details -->
+        <div class="row text-dark">
+            <div class="col-md-6 mb-4">
+                <div class="card border-light shadow-soft">
+                    <div class="card-body">
+                        <h5>✅ Safe Checks</h5>
+                        <h3 class="text-success">{{ safe_count }}</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card border-light shadow-soft">
+                    <div class="card-body">
+                        <h5>⚠️ Vulnerabilities Detected</h5>
+                        <h3 class="text-danger">{{ vulnerable_count }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Highest Risk -->
+        {% if highest_risk %}
+        <div class="card border-light shadow-soft text-dark mt-4">
+            <div class="card-body">
+                <h5>🔥 Highest Risk Vulnerability</h5>
+                <h4 class="text-danger font-weight-bold">{{ highest_risk }}</h4>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Download Report -->
+        <div class="mt-5">
+            <a href="{{ url_for('main.download_report', scan_id=scan_id) }}" class="btn btn-light btn-lg shadow-soft">
+                📄 Download Full Report (PDF)
+            </a>
+        </div>
+
+        <!-- Back Home -->
+        <div class="mt-4">
+            <a href="{{ url_for('main.index') }}" class="btn btn-outline-light">
+                ← Back to Home
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+<section class="py-5 bg-light min-vh-100">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="fw-bold">
+        <i class="bi bi-inbox-fill me-2 text-primary"></i> Admin Inbox
+      </h4>
+      <span class="badge bg-dark text-white">{{ messages|length }} messages</span>
+    </div>
+
+    <div class="card shadow rounded-4 border-0 glass-panel">
+      <div class="card-body p-0">
+        {% if messages %}
+          <div class="list-group list-group-flush">
+            {% for msg in messages %}
+              <div class="list-group-item list-group-item-action py-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+  <strong>{{ msg.name }}</strong>
+  <small class="text-muted">{{ msg.date.strftime('%b %d, %Y • %I:%M %p') }}</small>
+</div>
+                <div class="mb-2">
+                  <span class="badge bg-secondary me-2"><i class="bi bi-envelope-fill me-1"></i> {{ msg.email }}</span>
+                </div>
+                <p class="mb-0">{{ msg.message }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="p-4 text-center text-muted">
+            <i class="bi bi-envelope-open fs-1"></i>
+            <p class="mt-2">No messages yet.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.glass-panel {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+}
+</style>
+{% endblock %}
